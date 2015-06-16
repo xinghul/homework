@@ -39,9 +39,12 @@
 
       for (var i in this.props.students) {
         var student = this.props.students[i];
-        studentItems.push(
-          <Input key={student._id} type="checkbox" label={student.username} ref={"student_"+student._id} />
-        );
+
+        if (!student.isTeacher) {
+          studentItems.push(
+            <Input key={student._id} type="checkbox" label={student.username} ref={"student_"+student._id} />
+          );
+        }
       }
 
       return (
