@@ -16,6 +16,7 @@
   function getStateFromStores() {
     return {
       assignment: HomeworkStore.getCurrentAssignment(),
+      students: HomeworkStore.getStudents(),
       user: AuthStore.getUser()
     };
   }
@@ -41,10 +42,20 @@
     },
 
     render: function() {
+      var assigneeNames = [];
+      for (var i in this.state.students) {
+        var student = this.state.students[i];
+
+        if (this.state.assignment.students.indexOf(student._id) !== -1) {
+          assigneeNames.push(student.username);
+        }
+      }
+
       return (
         <div id="assignmentApp">
           <h1>Assignment {this.state.assignment._id}</h1>
           <h2>{this.state.assignment.content}</h2>
+          <h4>Assignees: {assigneeNames.join(", ")}</h4>
           <AnswerList />
           {this.state.user._id ? <AnswerComposer assignmentId={this.state.assignment._id} userId={this.state.user._id}/> : null}
           <Pager>

@@ -29,6 +29,8 @@
         }
 
         HomeworkActions.submitAssignment(assignment);
+
+        this.refs.input.getInputDOMNode().value = "";
       }
     },
 

@@ -22,7 +22,10 @@
         content: this.refs.input.getValue(),
         timestamp: Date.now()
       };
+      
       HomeworkActions.submitAnswer(rawAnswer);
+
+      this.refs.input.getInputDOMNode().value = "";
     },
 
     render: function() {
