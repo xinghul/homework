@@ -51,7 +51,7 @@
       }
       return (
         <div id="homeworkApp">
-          {message}
+          <div className="title-label">{message}</div>
           <HomeworkList assignments={this.state.assignments}/>
           {this.state.user.isTeacher ? <HomeworkComposer students={this.state.students}/> : null}
         </div>
