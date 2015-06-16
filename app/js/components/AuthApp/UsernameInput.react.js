@@ -22,10 +22,21 @@
     },
 
     validationState: function() {
-      let length = this.state.value.length;
-      if (length > 10) { return "success"; }
-      else if (length > 5) { return "warning"; }
-      else if (length > 0) { return "error"; }
+      var legalUserReg = /^[a-zA-Z][a-zA-Z0-9]*$/
+      ,   minLength    = 4
+      ,   maxLength    = 20;
+
+      let value  = this.state.value;
+
+      if (value.length > 0) {
+        if (value.length > maxLength || value.length < minLength) {
+          return "error";
+        } else if (!legalUserReg.test(value)) {
+          return "error";
+        } else {
+          return "success";
+        }
+      }
     },
 
     handleChange: function() {

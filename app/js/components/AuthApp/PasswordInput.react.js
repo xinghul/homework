@@ -21,10 +21,43 @@
     },
 
     validationState: function() {
-      let length = this.state.value.length;
-      if (length > 10) { return "success"; }
-      else if (length > 5) { return "warning"; }
-      else if (length > 0) { return "error"; }
+      let value = this.state.value;
+
+      var minLength = 8
+      ,   maxLength = 20
+      ,   num       = false
+      ,   lower     = false
+      ,   upper     = false
+      ,   match     = 0;
+
+      var matchNum       = /(?=.*\d)/
+      ,   matchLowerCase = /(?=.*[a-z])/
+      ,   matchUpperCase = /(?=.*[A-Z])/;
+
+
+      if (value.length > maxLength || (value.length < minLength && value.length > 0)) {
+        return "error";
+      } else {
+        if (matchNum.test(value)) {
+          match++;
+          num = true;
+        }
+        if (matchLowerCase.test(value)) {
+          match++;
+          lower = true;
+        }
+        if (matchUpperCase.test(value)) {
+          match++;
+          upper = true;
+        }
+
+        if (match > 2){
+          return "success";
+        }
+        if (match > 0) {
+          return "warning";
+        }
+      }
     },
 
     handleChange: function() {

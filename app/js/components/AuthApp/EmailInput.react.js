@@ -21,10 +21,17 @@
     },
 
     validationState: function() {
-      let length = this.state.value.length;
-      if (length > 10) { return "success"; }
-      else if (length > 5) { return "warning"; }
-      else if (length > 0) { return "error"; }
+      let value = this.state.value;
+
+      var legalEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+
+      if (value.length > 0) {
+        if (legalEmail.test(value)) {
+          return "success";
+        } else {
+          return "error";
+        }
+      }
     },
 
     handleChange: function() {
