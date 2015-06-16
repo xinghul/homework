@@ -22,7 +22,7 @@
         content: this.refs.input.getValue(),
         timestamp: Date.now()
       };
-      
+
       HomeworkActions.submitAnswer(rawAnswer);
 
       this.refs.input.getInputDOMNode().value = "";
@@ -31,7 +31,7 @@
     render: function() {
       return (
         <div id="answerComposer">
-          <h4>Post answer</h4>
+          <div className="title-label">Post answer</div>
           <form>
             <Input type="textarea" ref="input" placeholder="Type answer here..." />
             <Button onClick={this.handleSubmit}>Submit</Button>

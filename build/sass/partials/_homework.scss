@@ -10,6 +10,19 @@
     margin: 5px 0 10px 0;
   }
 
+  &-assignment-name {
+    @extend .title;
+    font-size: 22px;
+    color: #67809F;
+  }
+
+  &-assignee {
+    @extend .title;
+    margin: 5px 0 20px 0;
+    color: #2574A9;
+
+  }
+
   &-label {
     @extend .title;
     color: #336E7B;

@@ -53,9 +53,9 @@
 
       return (
         <div id="assignmentApp">
-          <h1>Assignment {this.state.assignment._id}</h1>
-          <h2>{this.state.assignment.content}</h2>
-          <h4>Assignees: {assigneeNames.join(", ")}</h4>
+          <div className="title-header">Assignment {this.state.assignment._id}</div>
+          <div className="title-assignment-name">{this.state.assignment.content}</div>
+          <div className="title-assignee">Assignees: {assigneeNames.join(", ")}</div>
           <AnswerList />
           {this.state.user._id ? <AnswerComposer assignmentId={this.state.assignment._id} userId={this.state.user._id}/> : null}
           <Pager>
