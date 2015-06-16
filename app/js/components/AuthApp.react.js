@@ -124,7 +124,7 @@
       if (this.state.user.username) {
         var title = "Hello, " + this.state.user.username;
         userArea =
-          <DropdownButton title={title}>
+          <DropdownButton title={title} bsStyle='primary' pullRight>
             <MenuItem onClick={this.handleLogOut}>Log out</MenuItem>
           </DropdownButton>
       } else {

@@ -1,0 +1,23 @@
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+
+  &-header {
+    @extend .title;
+    font-size: 25px;
+    color: #2C3E50;
+    margin: 5px 0 10px 0;
+  }
+
+  &-label {
+    @extend .title;
+    color: #336E7B;
+    margin: 0 0 10px 0;
+  }
+
+  &-selection {
+    @extend .title;
+    color: #34495E;
+  }
+}

@@ -36,24 +36,40 @@
 
     render: function() {
       var studentItems = [];
+      //var count = 0;
 
       for (var i in this.props.students) {
         var student = this.props.students[i];
 
         if (!student.isTeacher) {
+          /*if((count%4) === 0) {
+            studentItems.push(<Row>);
+          }*/
+
           studentItems.push(
-            <Input key={student._id} type="checkbox" label={student.username} ref={"student_"+student._id} />
+            //<Col xs={3}>
+              <Input key={student._id} type="checkbox" label={student.username}  ref={"student_"+student._id} />
+            //</Col>
           );
+
+          /*if((count%4) === 3) {
+            studentItems.push(</Row>);
+          }
+          count++;*/
         }
       }
 
+      /*if(count !== 0 && (count%4) !== 3) {
+        studentItems.push(</Row>);
+      }*/
+
       return (
         <div id="homeworkComposer">
-          <h3>Add assignment</h3>
+          <div className="title-label">Add assignment</div>
           <form>
             <Input type="textarea" ref="input" placeholder="Type question here..." />
-            <h4>Select students</h4>
-            {studentItems}
+            <div className="title-selection">Select students</div>
+              {studentItems}
             <Button onClick={this.handleSubmit}>Submit</Button>
           </form>
         </div>

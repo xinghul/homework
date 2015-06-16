@@ -37,7 +37,7 @@
 
       return (
         <div id="homeworkList">
-          <h1>Assignments</h1>
+          <div className="title-header">Assignments</div>
           <Table striped bordered hover>
             <thead>
               <tr>
