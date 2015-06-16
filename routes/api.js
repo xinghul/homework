@@ -70,10 +70,6 @@
 
     router.post("/answers", function(req, res) {
 
-      console.log(req.body)
-
-      // res.send("haha");
-
       answer.create(req.body).then(function(newAnswer) {
         res.json(newAnswer);
       }).catch(function(err) {

@@ -27,8 +27,6 @@
       rawAnswer = rawAnswer || {};
       var deferred = Promise.defer();
 
-      console.log(rawAnswer);
-
       var answer = new Answer({
         assignment: ObjectId(rawAnswer.assignment),
         student: ObjectId(rawAnswer.student),
