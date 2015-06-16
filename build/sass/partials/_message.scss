@@ -1,0 +1,288 @@
+
+.chatapp {
+  font-family: $app-font;
+  max-width: 760px;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+%chat-list {
+  border: 1px solid #ccf;
+  font-size: 16px;
+  height: 400px;
+  margin: 0;
+  overflow-y: auto;
+  padding: 0;
+}
+
+%chat-heading {
+  height: 40px;
+  margin: 0;
+}
+
+%chat-item {
+  clear: both;
+  list-style: none;
+}
+
+%thread-item-active {
+  background-color: #efefff;
+  cursor: default;
+}
+
+%chat-name {
+  color: #66c;
+  font-size: 13px;
+  margin: 0;
+}
+
+%chat-time {
+  color: #aad;
+  font-size: 12px;
+}
+
+%chat-delete {
+  position: relative;
+  cursor: pointer;
+}
+
+%chat-bubble {
+  @include prefix(border-radius, 10px);
+  display: block;
+  position: relative;
+  box-shadow: 0px 0px 6px #B2B2B2;
+  padding: 6px 18px;
+  max-width: 300px;
+  word-wrap: break-word;
+
+  &::before {
+    display: block;
+    position: absolute;
+    content: "\00a0";
+    top:5px;
+    @include prefix(transform, rotate( 29deg ) skew( -35deg ));
+    @include setSize(10px, 8px);
+  }
+}
+
+%chat-photo {
+  @include setSize(40px, 40px);
+}
+
+%chat-text {
+  clear: both;
+  font-size: 14px;
+  padding-top: 10px;
+}
+
+.clearboth {
+  clear:both;
+}
+
+.button {
+  &-delete {
+    opacity: 0;
+    box-shadow: 0px 0px 10px #B2B2B2;
+    @include setSize(10px, 10px);
+    @include prefix(transition, 0.2s);
+
+    .message-list-item:hover & {
+      opacity: 0.8;
+    }
+  }
+}
+
+.message-toolbar-container {
+  background-color: #e1d8cd;
+}
+
+.message-tool-bar {
+  padding:0;
+  margin: 0;
+}
+
+.tool-item{
+    @extend %chat-item ;
+    padding : 0px 5px 0 5px;
+    display: inline;
+    &-image {
+      @include setSize(30px, 30px);
+    }
+}
+
+//section
+@each $name, $float, $width in (message, right, 65%),
+                               (thread, left, 32.5%) {
+  .#{$name}-section {
+    float: #{$float};
+    width: #{$width};
+  }
+}
+
+.message-thread-heading {
+  @extend %chat-heading;
+}
+
+.thread-count {
+  @extend %chat-heading;
+}
+
+.message-list {
+  @extend %chat-list;
+
+  &-item {
+    @extend %chat-item;
+    padding: 10px 14px 0px 14px;
+  }
+}
+
+.thread-list {
+  @extend %chat-list;
+  overflow-x: hidden;
+
+  &-item {
+    @extend %chat-item;
+    padding: 12px 14px 14px;
+
+    .thread-list &{
+      @include prefix(transition, 0.2s);
+    }
+
+    .thread-list:hover & {
+      background-color: #fff;
+    }
+
+    .thread-list:hover &:hover {
+      background-color: #f8f8ff;
+    }
+
+    &.active {
+      @extend %thread-item-active;
+
+      .thread-list:hover & {
+        @extend %thread-item-active;
+      }
+
+      .thread-list:hover &:hover {
+        @extend %thread-item-active;
+      }
+    }
+  }
+
+}
+
+.message-composer {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 14px;
+  margin: 0px 0 0;
+  padding: 10px;
+  @include setSize(100%, 5em);
+}
+
+.message {
+
+  .present &-box{
+    float: right;
+  }
+
+  .others &-box{
+    float: left;
+  }
+
+  &-author-name {
+    @extend %chat-name;
+
+    .present & {
+      @include nameAlign(right, 45px);
+    }
+
+    .others & {
+      @include nameAlign(left, 45px);
+    }
+  }
+
+  &-time {
+    @extend %chat-time;
+
+    .present &{
+      float:right;
+      @include setPosition(relative, 40px, 15px);
+    }
+
+    .others &{
+      float:left;
+      @include setPosition(relative, 40px, -15px);
+    }
+  }
+
+  &-bubble {
+    @extend %chat-bubble;
+
+    .present &{
+      @include bubble(#0f0, -25px, -30px, 5px 20px 5px 45px, right);
+
+      &::before {
+        @include bubbleBefore(#0f0, 2px -2px 2px 0 rgba( 178, 178, 178, .4 ), right, -1px);
+      }
+    }
+
+    .others &{
+      @include bubble(#F2F2F2, -25px, 30px, 5px 45px 5px 20px, left);
+
+      &::before {
+        @include bubbleBefore(#F2F2F2, -2px 2px 2px 0 rgba( 178, 178, 178, .4 ), left, -1px);
+      }
+    }
+  }
+
+  &-text {
+    @extend %chat-text;
+  }
+
+  &-delete {
+    @extend %chat-delete;
+    top : 5px;
+    .present & {
+      left : 16px;
+      float: right;
+    }
+
+    .others & {
+      left : -16px;
+      float: left;
+    }
+  }
+
+  &-photo {
+    @extend %chat-photo;
+
+    .present &{
+      float: right;
+    }
+
+    .others & {
+      float: left;
+    }
+  }
+}
+
+.thread {
+  &-name {
+    @extend %chat-name;
+    float:left;
+  }
+
+  &-time {
+    @extend %chat-time;
+    float: right;
+  }
+
+  &-last-message {
+    @extend %chat-text;
+  }
+}
+
+.hide {
+  visibility: hidden;
+}
